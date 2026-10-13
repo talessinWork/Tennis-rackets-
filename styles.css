@@ -1,0 +1,361 @@
+:root {
+  --court: #23466E;      /* משטח מגרש קשיח */
+  --court-deep: #183454;
+  --surround: #3F6E57;   /* הירוק שמסביב למגרש */
+  --line: #FBFBF7;       /* קווי המגרש */
+  --ball: #D9E54A;       /* צהוב כדור, בשימוש מועט */
+  --ink: #17202C;
+  --muted: #5B6676;
+  --paper: #F3F5F2;
+  --card: #FFFFFF;
+  --rule: #D7DDD8;
+
+  --display: "Karantina", "Assistant", system-ui, sans-serif;
+  --body: "Assistant", system-ui, -apple-system, "Segoe UI", sans-serif;
+
+  --step-0: 1.0625rem;
+  --step-1: 1.25rem;
+  --step-2: 1.75rem;
+  --step-3: clamp(2.6rem, 6vw, 4.25rem);
+  --step-4: clamp(3.4rem, 9vw, 6.5rem);
+
+  --gutter: clamp(16px, 4vw, 48px);
+  --max: 1180px;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+
+body {
+  margin: 0;
+  font-family: var(--body);
+  font-size: var(--step-0);
+  line-height: 1.6;
+  color: var(--ink);
+  background: var(--paper);
+}
+
+a { color: var(--court); }
+img { max-width: 100%; display: block; }
+
+:focus-visible {
+  outline: 3px solid var(--ball);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+.skip {
+  position: absolute;
+  inset-inline-start: -999px;
+  top: 8px;
+  background: var(--ink);
+  color: #fff;
+  padding: 8px 14px;
+  z-index: 10;
+}
+.skip:focus { inset-inline-start: 8px; }
+
+/* כותרת עליונה */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px var(--gutter);
+  background: var(--surround);
+  color: var(--line);
+}
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 1;
+  color: var(--line);
+  text-decoration: none;
+}
+.logo-ball {
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: var(--ball);
+}
+.site-header nav { display: flex; gap: clamp(12px, 3vw, 28px); }
+.site-header nav a {
+  color: var(--line);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1rem;
+}
+.site-header nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
+
+/* גיבור: מבט מלמעלה על מגרש */
+.hero {
+  position: relative;
+  background: var(--surround);
+  color: var(--line);
+  padding: clamp(24px, 5vw, 56px) var(--gutter) clamp(48px, 8vw, 96px);
+  overflow: hidden;
+}
+.court {
+  max-width: var(--max);
+  margin: 0 auto;
+}
+.court svg { display: block; width: 100%; height: auto; aspect-ratio: 1000 / 460; }
+.court-surface { fill: var(--court); }
+.court-lines rect,
+.court-lines line { fill: none; stroke: var(--line); stroke-width: 4; }
+.net { stroke: var(--line); stroke-width: 6; stroke-dasharray: 2 6; opacity: .85; }
+.ball { fill: var(--ball); }
+
+@media (prefers-reduced-motion: no-preference) {
+  .ball { animation: rally 3.2s cubic-bezier(.45,.05,.55,.95) 0.3s 1 both; }
+  @keyframes rally {
+    0%   { transform: translate(-560px, 180px); }
+    55%  { transform: translate(-80px, -30px); }
+    100% { transform: translate(0, 0); }
+  }
+}
+
+.hero-text {
+  max-width: var(--max);
+  margin: clamp(24px, 4vw, 40px) auto 0;
+  position: relative;
+  padding-inline-start: clamp(0px, 4vw, 48px);
+}
+.hero h1 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-4);
+  line-height: .92;
+  margin: 0 0 20px;
+  max-width: 11ch;
+  text-wrap: balance;
+}
+.hero p {
+  max-width: 52ch;
+  font-size: var(--step-1);
+  line-height: 1.55;
+  margin: 0 0 28px;
+  color: #E7EEE9;
+}
+
+/* כפתורים */
+.btn {
+  display: inline-block;
+  padding: 14px 26px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 1.05rem;
+  text-decoration: none;
+  border: 2px solid transparent;
+}
+.btn-primary { background: var(--line); color: var(--court-deep); }
+.btn-primary:hover { background: var(--ball); }
+.btn-whatsapp { background: var(--court); color: #fff; }
+.btn-whatsapp:hover { background: var(--court-deep); }
+
+/* מקטעים */
+.rackets, .guide, .contact {
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: clamp(48px, 8vw, 96px) var(--gutter) 0;
+}
+h2 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: var(--step-3);
+  line-height: 1;
+  margin: 0 0 12px;
+}
+.muted { color: var(--muted); margin: 0; }
+
+.section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+  border-bottom: 4px solid var(--court);
+  padding-bottom: 8px;
+}
+
+/* סינון */
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px 36px;
+  align-items: flex-end;
+  padding: 24px 0 32px;
+}
+.filters fieldset { border: 0; margin: 0; padding: 0; }
+.filters legend, .field label {
+  font-weight: 700;
+  font-size: .95rem;
+  margin-bottom: 8px;
+  display: block;
+}
+.chips { display: flex; flex-wrap: wrap; gap: 8px; }
+.chips label { cursor: pointer; }
+.chips input { position: absolute; opacity: 0; pointer-events: none; }
+.chips span {
+  display: inline-block;
+  padding: 7px 16px;
+  border-radius: 999px;
+  border: 2px solid var(--rule);
+  background: var(--card);
+  font-weight: 600;
+}
+.chips input:checked + span {
+  background: var(--court);
+  border-color: var(--court);
+  color: #fff;
+}
+.chips input:focus-visible + span { outline: 3px solid var(--ball); outline-offset: 2px; }
+.field select {
+  font: inherit;
+  padding: 8px 12px;
+  border-radius: 10px;
+  border: 2px solid var(--rule);
+  background: var(--card);
+  color: var(--ink);
+  min-width: 170px;
+}
+
+/* רשימת מחבטים */
+.grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 340px), 1fr));
+  gap: 20px;
+}
+.racket {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  gap: 18px;
+  background: var(--card);
+  border: 1px solid var(--rule);
+  border-radius: 14px;
+  padding: 20px;
+}
+.racket-art {
+  grid-row: span 2;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--paper);
+  border-radius: 10px;
+  padding: 8px 0;
+}
+.racket-art svg { width: 70px; height: auto; }
+.racket-art img { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+
+.racket-head { min-width: 0; }
+.racket-brand { color: var(--muted); font-weight: 600; font-size: .95rem; margin: 0; }
+.racket h3 {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2.1rem;
+  line-height: 1;
+  margin: 2px 0 6px;
+}
+.tag {
+  display: inline-block;
+  font-size: .85rem;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+  background: #E5ECE7;
+  color: var(--surround);
+}
+.tag.is-new { background: var(--ball); color: var(--ink); }
+.racket-note { margin: 8px 0 0; color: var(--muted); font-size: .98rem; }
+
+.racket-specs {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  margin: 4px 0 0;
+  border-top: 1px solid var(--rule);
+  padding-top: 12px;
+}
+.racket-specs div { text-align: center; }
+.racket-specs div + div { border-inline-start: 1px solid var(--rule); }
+.racket-specs dt { font-size: .82rem; color: var(--muted); }
+.racket-specs dd { margin: 0; font-weight: 700; font-variant-numeric: tabular-nums; }
+
+.racket-foot {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.price {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2.3rem;
+  line-height: 1;
+}
+.ask {
+  font-weight: 700;
+  color: var(--court);
+  text-decoration: none;
+  padding: 9px 16px;
+  border: 2px solid var(--court);
+  border-radius: 999px;
+}
+.ask:hover { background: var(--court); color: #fff; }
+
+.empty { padding: 24px 0; color: var(--muted); }
+
+/* מדריך */
+.lede { max-width: 60ch; color: var(--muted); margin: 0 0 28px; }
+.specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 250px), 1fr));
+  gap: 0;
+  margin: 0;
+  border-top: 4px solid var(--court);
+}
+.specs > div {
+  padding: 20px 0 20px 24px;
+  border-bottom: 1px solid var(--rule);
+}
+.specs dt {
+  font-family: var(--display);
+  font-weight: 700;
+  font-size: 2rem;
+  line-height: 1.1;
+  margin-bottom: 6px;
+}
+.specs dd { margin: 0; max-width: 40ch; }
+
+/* יצירת קשר */
+.contact {
+  padding-bottom: clamp(56px, 9vw, 110px);
+}
+.contact p { max-width: 55ch; margin: 0 0 24px; }
+
+.site-footer {
+  background: var(--surround);
+  color: var(--line);
+  padding: 20px var(--gutter);
+  font-size: .95rem;
+}
+.site-footer p { max-width: var(--max); margin: 0 auto; }
+
+@media (max-width: 560px) {
+  .site-header nav a[href="#guide"] { display: none; }
+  .hero-text { margin-top: 20px; padding: 0; }
+  .racket { grid-template-columns: 72px 1fr; padding: 16px; }
+  .racket-art svg { width: 54px; }
+  .racket-specs dt { font-size: .78rem; }
+}

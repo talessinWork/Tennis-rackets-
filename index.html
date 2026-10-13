@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>המחבט · מחבטי טניס חדשים ומשומשים</title>
+  <meta name="description" content="מחבטי טניס חדשים ומשומשים במצב טוב. סינון לפי רמה, משקל וגודל ראש, ופנייה ישירה בוואטסאפ.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karantina:wght@400;700&family=Assistant:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='14' fill='%23D9E54A'/%3E%3Cpath d='M4 12c8 2 16 2 24 0M4 20c8-2 16-2 24 0' stroke='%23fff' stroke-width='2' fill='none'/%3E%3C/svg%3E">
+</head>
+<body>
+  <a class="skip" href="#rackets">דילוג לרשימת המחבטים</a>
+
+  <header class="site-header">
+    <a class="logo" href="#top" aria-label="המחבט, לראש העמוד">
+      <span class="logo-ball" aria-hidden="true"></span>המחבט
+    </a>
+    <nav aria-label="ניווט ראשי">
+      <a href="#rackets">מחבטים</a>
+      <a href="#guide">איך לבחור</a>
+      <a href="#contact">יצירת קשר</a>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="court" aria-hidden="true">
+        <svg viewBox="0 0 1000 460" preserveAspectRatio="xMidYMid slice">
+          <rect class="court-surface" x="0" y="0" width="1000" height="460"/>
+          <g class="court-lines">
+            <rect x="60" y="40" width="880" height="380"/>
+            <line x1="60" y1="87" x2="940" y2="87"/>
+            <line x1="60" y1="373" x2="940" y2="373"/>
+            <line x1="267" y1="87" x2="267" y2="373"/>
+            <line x1="733" y1="87" x2="733" y2="373"/>
+            <line x1="267" y1="230" x2="733" y2="230"/>
+            <line x1="60" y1="230" x2="72" y2="230"/>
+            <line x1="928" y1="230" x2="940" y2="230"/>
+          </g>
+          <line class="net" x1="500" y1="26" x2="500" y2="434"/>
+          <circle class="ball" cx="820" cy="140" r="11"/>
+        </svg>
+      </div>
+      <div class="hero-text">
+        <h1 id="hero-title">מחבטי טניס, נבדקים לפני שהם מגיעים אליך</h1>
+        <p>חדשים ומשומשים, עם כל הנתונים שחשובים במגרש: משקל, איזון, גודל ראש ומידת אחיזה. מוצאים מחבט, שולחים הודעה, ותואמים איסוף או משלוח.</p>
+        <a class="btn btn-primary" href="#rackets">לרשימת המחבטים</a>
+      </div>
+    </section>
+
+    <section id="rackets" class="rackets" aria-labelledby="rackets-title">
+      <div class="section-head">
+        <h2 id="rackets-title">מחבטים זמינים</h2>
+        <p id="result-count" class="muted" aria-live="polite"></p>
+      </div>
+
+      <form class="filters" id="filters" aria-label="סינון מחבטים">
+        <fieldset>
+          <legend>רמה</legend>
+          <div class="chips">
+            <label><input type="radio" name="level" value="all" checked><span>הכול</span></label>
+            <label><input type="radio" name="level" value="beginner"><span>מתחילים</span></label>
+            <label><input type="radio" name="level" value="intermediate"><span>בינוניים</span></label>
+            <label><input type="radio" name="level" value="advanced"><span>מתקדמים</span></label>
+          </div>
+        </fieldset>
+        <fieldset>
+          <legend>מצב</legend>
+          <div class="chips">
+            <label><input type="radio" name="condition" value="all" checked><span>הכול</span></label>
+            <label><input type="radio" name="condition" value="new"><span>חדש</span></label>
+            <label><input type="radio" name="condition" value="used"><span>משומש</span></label>
+          </div>
+        </fieldset>
+        <div class="field">
+          <label for="sort">מיון</label>
+          <select id="sort" name="sort">
+            <option value="default">מומלצים</option>
+            <option value="price-asc">מחיר: מהנמוך</option>
+            <option value="price-desc">מחיר: מהגבוה</option>
+            <option value="weight-asc">משקל: מהקל</option>
+          </select>
+        </div>
+      </form>
+
+      <ul class="grid" id="grid"></ul>
+      <p class="empty" id="empty" hidden>אין מחבט שמתאים לסינון הזה. נסו לבחור "הכול" באחת הקטגוריות, או <a href="#contact">כתבו לנו מה אתם מחפשים</a>.</p>
+    </section>
+
+    <section id="guide" class="guide" aria-labelledby="guide-title">
+      <h2 id="guide-title">איך לבחור מחבט</h2>
+      <p class="lede">ארבעה מספרים קובעים איך המחבט מרגיש ביד. אלה הטווחים שכדאי להכיר לפני שבוחרים.</p>
+      <dl class="specs">
+        <div>
+          <dt>גודל ראש</dt>
+          <dd><strong>100–105 אינץ'²</strong> סלחני יותר ונותן כוח, מתאים לרוב השחקנים. <strong>95–98</strong> נותן שליטה ודורש מכה נקייה.</dd>
+        </div>
+        <div>
+          <dt>משקל</dt>
+          <dd><strong>עד 290 גרם</strong> קל להנעה, טוב למתחילים ולנוער. <strong>295–305</strong> הטווח הנפוץ. <strong>מעל 310</strong> יציב, לשחקנים עם תנופה מלאה.</dd>
+        </div>
+        <div>
+          <dt>איזון</dt>
+          <dd>מעל <strong>325 מ"מ</strong> המחבט כבד בראש ומוסיף כוח. מתחת ל-<strong>315</strong> הוא כבד בידית ומהיר ליד הרשת.</dd>
+        </div>
+        <div>
+          <dt>מידת אחיזה</dt>
+          <dd>מודדים מקמט כף היד האמצעי עד קצה האצבע הטבעת: כ-<strong>10.5 ס"מ</strong> הוא L2, כ-<strong>11 ס"מ</strong> הוא L3. בספק, בוחרים קטן ומוסיפים גריפ עליון.</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section id="contact" class="contact" aria-labelledby="contact-title">
+      <h2 id="contact-title">רוצים לשאול על מחבט?</h2>
+      <p>שלחו הודעה עם שם הדגם, ונחזור עם תמונות נוספות, פרטי מיתור ואפשרויות איסוף או משלוח.</p>
+      <a class="btn btn-whatsapp" id="contact-whatsapp" href="#" target="_blank" rel="noopener">שליחת הודעה בוואטסאפ</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> המחבט</p>
+  </footer>
+
+  <script src="data/rackets.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
